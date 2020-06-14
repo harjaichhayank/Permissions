@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/UserCameraId"
+        android:layout_width="165dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="openCamera">
+    </Button>
+
+    <Button
+        android:id="@+id/ExternalStorageId"
+        android:layout_width="165dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="160dp"
+        android:text="@string/write_to_external_storage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="openStorage">
+    </Button>
+
+    <Button
+        android:id="@+id/ReadContactsId"
+        android:layout_width="165dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="252dp"
+        android:text="@string/read_contacts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="openContacts">
+    </Button>
+
+    <Button
+        android:id="@+id/GetAllPermissionsId"
+        android:layout_width="165dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="372dp"
+        android:onClick="getAllPermissions"
+        android:text="@string/get_all_permissions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

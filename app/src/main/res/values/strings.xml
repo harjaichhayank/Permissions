@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PermissionTest</string>
+    <string name="camera">Camera</string>
+    <string name="write_to_external_storage">Write TO External Storage</string>
+    <string name="read_contacts">Read Contacts</string>
+    <string name="your_permissions_details_are_here">Your Permissions Details are here</string>
+
+    <string name="permission_preferences">PERMISSION_PREFERENCES</string>
+    <string name="permission_camera">PERMISSION_CAMERA</string>
+    <string name="permission_storage">PERMISSION_STORAGE</string>
+    <string name="permission_contacts">PERMISSION_CONTACTS</string>
+    <string name="get_all_permissions">Get All Permissions</string>
+</resources>
