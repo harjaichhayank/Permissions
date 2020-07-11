@@ -17,6 +17,22 @@ class PermissionUtil {
         editor = sharedPreferences.edit();
     }
 
+    boolean checkPermissionPreferences(String permission){
+        boolean isShown = false;
+        switch(permission){
+            case "camera":
+                isShown = sharedPreferences.getBoolean(context.getString(R.string.permission_camera),false);
+                break;
+            case "contacts":
+                isShown = sharedPreferences.getBoolean(context.getString(R.string.permission_contacts),false);
+                break;
+            case "storage":
+                isShown = sharedPreferences.getBoolean(context.getString(R.string.permission_storage),false);
+                break;
+        }
+        return !isShown;
+    }
+
     void updatePermissionPreferences(String permission){
         switch (permission){
             case "camera":
@@ -32,21 +48,5 @@ class PermissionUtil {
             editor.commit();
             break;
         }
-    }
-
-    boolean checkPermissionPreferences(String permission){
-        boolean isShown = false;
-        switch(permission){
-            case "camera":
-                isShown = sharedPreferences.getBoolean(context.getString(R.string.permission_camera),false);
-                break;
-            case "contacts":
-                isShown = sharedPreferences.getBoolean(context.getString(R.string.permission_contacts),false);
-                break;
-            case "storage":
-                isShown = sharedPreferences.getBoolean(context.getString(R.string.permission_storage),false);
-                break;
-        }
-        return isShown;
     }
 }

@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int TXT_CONTACTS = 3;
 
     PermissionUtil permissionUtil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,19 +106,12 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void requestGroupPermission(ArrayList<String> permission){
-        String[] permissionList = new String[permission.size()];
-        permission.toArray(permissionList);
-
-        ActivityCompat.requestPermissions(MainActivity.this, permissionList,REQUEST_GROUP_PERMISSIONS);
-    }
-
     public void openCamera(View view) {
         if(checkPermission(TXT_CAMERA)!=PackageManager.PERMISSION_GRANTED){
             if(ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,Manifest.permission.CAMERA)){
                 showPermissionExplanation(TXT_CAMERA);
             }
-            else if(!permissionUtil.checkPermissionPreferences("camera")){
+            else if(permissionUtil.checkPermissionPreferences("camera")){
                 requestPermission(TXT_CAMERA);
                 permissionUtil.updatePermissionPreferences("camera");
             }
@@ -143,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             if(ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
                 showPermissionExplanation(TXT_STORAGE);
             }
-            else if(!permissionUtil.checkPermissionPreferences("storage")){
+            else if(permissionUtil.checkPermissionPreferences("storage")){
                 requestPermission(TXT_STORAGE);
                 permissionUtil.updatePermissionPreferences("storage");
             }
@@ -169,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             if(ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,Manifest.permission.READ_CONTACTS)){
                 showPermissionExplanation(TXT_CONTACTS);
             }
-            else if(!permissionUtil.checkPermissionPreferences("contacts")){
+            else if(permissionUtil.checkPermissionPreferences("contacts")){
                 requestPermission(TXT_CONTACTS);
                 permissionUtil.updatePermissionPreferences("contacts");
             }
@@ -203,6 +197,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         requestGroupPermission(permissionNeeded);
+    }
+
+    private void requestGroupPermission(ArrayList<String> permission){
+        if (permission.isEmpty()){
+            Toast.makeText(this, "All the requests have been granted, no additional request required", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            String[] permissionList = new String[permission.size()];
+            permission.toArray(permissionList);
+
+            ActivityCompat.requestPermissions(MainActivity.this, permissionList,REQUEST_GROUP_PERMISSIONS);
+        }
     }
 
     @Override
@@ -266,9 +272,10 @@ public class MainActivity extends AppCompatActivity {
 
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-
                 break;
+
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
